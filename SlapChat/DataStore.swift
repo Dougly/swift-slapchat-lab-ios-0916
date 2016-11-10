@@ -17,6 +17,29 @@ class DataStore {
     
     // MARK: - Core Data stack
     
+    var messages = [Message]()
+    
+    
+    
+    func fetchData() {
+        
+        let context = persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<Message>(entityName: "Message")
+    
+        do {
+            
+            messages = try context.fetch(fetchRequest)
+            
+            
+        } catch {
+            
+            print("did not work")
+        }
+        
+    }
+    
+    
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
